@@ -10,7 +10,7 @@ export default class Cache {
   private async connectToRedis(): Promise<void> {
     this.cache = new Redis.Redis({
       host: configs.cacheHost,
-      port: parseInt(configs.cachePort as string),
+      port: parseInt(String(configs.cachePort)),
     });
 
     try {

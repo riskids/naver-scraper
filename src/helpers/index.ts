@@ -1,7 +1,6 @@
 import AuthenticatedRequest from "../requests/authenticated.request";
 import Cache from "../configs/cache.config";
 import * as Redis from "ioredis";
-import Database from "../configs/database.config";
 import { Sequelize } from "sequelize-typescript";
 import CustomError from "../exceptions/customError";
 
@@ -9,12 +8,6 @@ export const useCache = (): Redis.Redis => {
   const initializedCache = new Cache();
   const cache = initializedCache.getCache();
   return cache;
-};
-
-export const useDb = (): Sequelize => {
-  const initializedDb = new Database();
-  const db = initializedDb.getDb();
-  return db;
 };
 
 export const extractToken = (req: AuthenticatedRequest): string => {

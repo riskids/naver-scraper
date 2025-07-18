@@ -16,6 +16,8 @@ const {
   CACHE_HOST,
   CACHE_PORT,
   JWT_SET_KEY,
+  REDIS_HOST, // Add REDIS_HOST
+  REDIS_PORT, // Add REDIS_PORT
 } = process.env;
 export default {
   port: PORT,
@@ -29,7 +31,7 @@ export default {
   saltKey: SALT_KEY,
   tokenKey: TOKEN_KEY,
   tokenExpration: TOKEN_EXPIRATION || "5m",
-  cacheHost: CACHE_HOST,
-  cachePort: CACHE_PORT || 6379,
+  cacheHost: REDIS_HOST || CACHE_HOST, // Prioritize REDIS_HOST
+  cachePort: REDIS_PORT ? parseInt(REDIS_PORT as string) : (CACHE_PORT ? parseInt(CACHE_PORT as string) : 6379), // Prioritize REDIS_PORT
   jwtSetKey: JWT_SET_KEY || "tokens",
 };

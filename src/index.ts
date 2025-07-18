@@ -1,13 +1,11 @@
 import express, { Application } from "express";
 import cors, { CorsOptions } from "cors";
 import Routes from "./routes";
-import Database from "./configs/database.config";
 import Cache from "./configs/cache.config";
 import useragent from "express-useragent";
 export default class Server {
   constructor(app: Application) {
     this.config(app);
-    this.syncDatabase();
     this.syncCache();
     new Routes(app);
   }
@@ -26,11 +24,5 @@ export default class Server {
 
   private syncCache(): void {
     new Cache();
-  }
-
-  private syncDatabase(): void {
-    new Database();
-    // const db = new Database();
-    // db.initDb?.sync({ alter: true });
   }
 }
