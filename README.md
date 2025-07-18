@@ -1,4 +1,5 @@
 # Naver API Scraper
+working link : `http://43.228.214.38:3030/`.
 
 ## Scraper explanation
 
