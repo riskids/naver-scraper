@@ -6,12 +6,14 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "5001:5000"
+      - "3030:5001"
     depends_on:
       - redis
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      APP_MODE: "production"
+      PORT: 5001
 
   redis:
     image: "redis:alpine"
