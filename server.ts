@@ -7,7 +7,7 @@ new Server(app);
 const parsedPort: number = parseInt(configs.port as string, 10);
 const PORT: number = isNaN(parsedPort) ? 5000 : parsedPort;
 app
-  .listen(PORT, "localhost", function () {
+  .listen(PORT, "0.0.0.0", function () {
     console.log(`Server is running on port ${PORT}.`);
   })
   .on("error", (err: any) => {

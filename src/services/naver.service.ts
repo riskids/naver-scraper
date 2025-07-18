@@ -78,7 +78,7 @@ const scrapeNaverProduct = async (url: string): Promise<StateData> => {
                 timeout: 60000 
             })
 
-            await page.screenshot({path: `test-${attempt + 1}.png`, fullPage:true});
+            // await page.screenshot({path: `test-${attempt + 1}.png`, fullPage:true});
 
             if (await checkCaptcha(page)) {
                 console.log('captcha detected');
