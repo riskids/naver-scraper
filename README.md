@@ -1,13 +1,56 @@
-## INSTALLATION REQUIREMENTS
+# Naver API Scraper
 
-1. install node 18.15^
-2. run command "npm install"
-3. copy .env.example file to a new file named .env in the same directory path
-4. adjust environment in .env file
-5. Change the script "db:sync" in package.json file to this:
-   from (default in development mode) : "ts-node syncDB.ts",
-   to (in production mode) : "ts-node build/syncDB.ts",
-6. run command "npm run build" if you want to production mode
-7. run command "npm run db:sync" to sychronize database.
-8. run redis-server if you have installed on your local machine.
-# naver-scraper
+## Scraper explanation
+
+*   **Anti-Detection**: Uses Puppeteer-Extra with Stealth Plugin, rotates proxies, and changes User-Agents to avoid bot detection.
+*   **Resilience**: Implements retry logic for blocking, though captcha solving is currently on progress.
+*   **Efficiency**: Leverages Redis for caching scraped data to prevent redundant requests.
+*   **Data Extraction**: Primarily extracts data from `window.__PRELOADED_STATE__` JavaScript objects.
+
+
+## Local Installation
+
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Run project:**
+    Development (hot-reloading):
+    ```bash
+    npm run start
+    ```
+    Access at `http://localhost:5001`.
+
+4.  **Setting the proxy:**
+    Add the proxy to this file:
+    ```bash
+    proxy.txt
+    ```
+
+5.  **Example usage of API:**
+    the endpoint can be found at `http://localhost:3030/api/naver?productUrl=https://smartstore.naver.com/{store_name}/products/{product_id}`.
+
+    example: `http://localhost:3030/api/naver?productUrl=https://smartstore.naver.com/rainbows9030/products/9645732504` 
+
+
+
+
+## Running via Docker
+
+1.  **Build Docker images:**
+    ```bash
+    docker-compose build
+    ```
+
+2.  **Start services:**
+    ```bash
+    docker-compose up
+    ```
+    (For detached mode: `docker-compose up -d`)
+
+3.  **Access application:**
+    `http://localhost:3030`
+
+4.  **Stop services:**
+    ```bash
+    docker-compose down
