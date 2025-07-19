@@ -60,9 +60,10 @@ const scrapeNaverProduct = async (url: string): Promise<StateData> => {
                     `--proxy-server=${proxyServer}`,
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
+                    '--ignore-certificate-errors', // Add this line
+                    '--disable-web-security', // Add this line
                 ]
             });
-
             const userAgent = new UserAgent({ 
                 deviceCategory: 'desktop' 
             });
@@ -74,7 +75,7 @@ const scrapeNaverProduct = async (url: string): Promise<StateData> => {
             await page.authenticate(PROXY_CREDENTIALS);
 
             await page.goto(url, {
-                waitUntil:'networkidle0',
+                waitUntil:'networkidle2', // Change to networkidle2
                 timeout: 60000 
             })
 
